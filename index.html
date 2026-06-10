@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Tuo Nome] - Sommelier & Appassionato</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bordeaux: #722F37;
+            --oro: #C9A961;
+            --bianco: #F5F0E8;
+            --nero: #2C2C2C;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bianco);
+            color: var(--nero);
+            line-height: 1.6;
+        }
+        
+        /* Header elegante */
+        header {
+            background: linear-gradient(135deg, var(--bordeaux) 0%, #4A1C23 100%);
+            color: var(--bianco);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-weight: 300;
+            font-size: 1.2rem;
+            color: var(--oro);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        /* Navigazione */
+        nav {
+            background: var(--nero);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: var(--bianco);
+            text-decoration: none;
+            font-weight: 400;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        
+        nav a:hover {
+            color: var(--oro);
+        }
+        
+        /* Sezioni */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--bordeaux);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--oro);
+        }
+        
+        /* Biografia */
+        .bio {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 3rem;
+            align-items: start;
+            margin: 3rem 0;
+        }
+        
+        .bio-img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .bio-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        /* Griglia bottiglie */
+        .wine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+        
+        .wine-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .wine-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+        
+        .wine-img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            background: #f0f0f0;
+        }
+        
+        .wine-content {
+            padding: 1.5rem;
+        }
+        
+        .wine-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--bordeaux);
+            margin-bottom: 0.5rem;
+        }
+        
+        .wine-year {
+            color: var(--oro);
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .wine-desc {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Sezione Crowdfunding */
+        .crowd-card {
+            background: linear-gradient(to bottom, white, #fafafa);
+            border: 2px solid var(--oro);
+        }
+        
+        .progress-container {
+            margin: 1.5rem 0;
+            background: #e0e0e0;
+            border-radius: 25px;
+            overflow: hidden;
+            height: 30px;
+            position: relative;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--bordeaux), #9B4D5B);
+            border-radius: 25px;
+            transition: width 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        
+        .donors-list {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--bianco);
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .donors-list strong {
+            color: var(--bordeaux);
+        }
+        
+        /* Bottone PayPal */
+        .paypal-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #0070BA, #005EA6);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .paypal-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,112,186,0.4);
+        }
+        
+        /* Stato completato */
+        .completed-badge {
+            display: inline-block;
+            background: var(--oro);
+            color: var(--bordeaux);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-top: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--nero);
+            color: var(--bianco);
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 5rem;
+        }
+        
+        .footer-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--oro);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .bio {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .wine-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>[Il Tuo Nome]</h1>
+        <p class="subtitle">Sommelier & Appassionato di Vini</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#biografia">Biografia</a></li>
+            <li><a href="#degustazioni">Le Mie Degustazioni</a></li>
+            <li><a href="#collezione">Collezione Premium</a></li>
+            <li><a href="#crowdfunding">Etichette da Scoprire</a></li>
+            <li><a href="#ringraziamenti">Ringraziamenti</a></li>
+        </ul>
+    </nav>
+
+    <!-- BIOGRAFIA -->
+    <section id="biografia" class="container">
+        <h2 class="section-title">La Mia Storia</h2>
+        <div class="bio">
+            <img src="img/tuo-ritratto.jpg" alt="Il tuo ritratto" class="bio-img">
+            <div class="bio-text">
+                <p>[Scrivi qui la tua biografia: da dove vieni, la tua formazione, la tua filosofia sul vino, i tuoi viaggi nelle cantine, le certificazioni AIS/WSET, ecc.]</p>
+                <p style="margin-top: 1rem;">[Aggiungi un aneddoto personale o la tua missione: "Il mio obiettivo è scoprire etichette nascoste e condividerle con voi..."]</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEGUSTAZIONI PASSATE -->
+    <section id="degustazioni" class="container">
+        <h2 class="section-title">Le Bottiglie Bevute</h2>
+        <div class="wine-grid">
+            
+            <!-- Esempio bottiglia 1 -->
+            <div class="wine-card">
+                <img src="img/bottiglia1.jpg" alt="Nome Vino" class="wine-img">
+                <div class="wine-content">
+                    <h3 class="wine-title">Barolo Riserva 2015</h3>
+                    <span class="wine-year">Cantina [Nome] - Piemonte</span>
+                    <p class="wine-desc">
+                        Note di ciliegia sotto spirito, tabacco e terra bagnata. Tannini vellutati 
+                        e un finale persistente di liquirizia. Abbinamento perfetto con brasato al Barolo.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Esempio bottiglia 2 -->
+            <div class="wine-card">
+                <img src="img/bottiglia2.jpg" alt="Nome Vino" class="wine-img">
+                <div class="wine-content">
+                    <h3 class="wine-title">Brunello di Montalcino 2016</h3>
+                    <span class="wine-year">Cantina [Nome] - Toscana</span>
+                    <p class="wine-desc">
+                        Rubino intenso con riflessi granati. Al naso emerge frutta rossa matura, 
+                        spezie dolci e un tocco di vaniglia. Struttura imponente ma elegante.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Aggiungi altre bottiglie qui -->
+            
+        </div>
+    </section>
+
+    <!-- COLLEZIONE PREMIUM (in vendita) -->
+    <section id="collezione" class="container">
+        <h2 class="section-title">Collezione Premium</h2>
+        <p style="text-align: center; margin-bottom: 2rem; font-style: italic; color: #666;">
+            Bottiglie selezionate disponibili per l'acquisto. Contattami per informazioni.
+        </p>
+        <div class="wine-grid">
+            
+            <div class="wine-card">
+                <img src="img/vendita1.jpg" alt="Vino in vendita" class="wine-img">
+                <div class="wine-content">
+                    <h3 class="wine-title">Amarone della Valpolicella 2012</h3>
+                    <span class="wine-year">Cantina [Nome] - Veneto</span>
+                    <p class="wine-desc">Prezzo: €85,00</p>
+                    <p class="wine-desc">Disponibilità: 3 bottiglie</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CROWDFUNDING - ETICHETTE INTROVABILI -->
+    <section id="crowdfunding" class="container">
+        <h2 class="section-title">Etichette da Scoprire</h2>
+        <p style="text-align: center; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+            Aiutami ad ampliare la mia conoscenza! Queste etichette introvabili sono il mio prossimo obiettivo. 
+            Ogni donazione, anche minima, mi avvicina alla bottiglia. Una volta raggiunto l'obiettivo, 
+            la degusterò e pubblicherò la recensione con i ringraziamenti a tutti i sostenitori.
+        </p>
+
+        <div class="wine-grid">
+            
+            <!-- BOTTIGLIA 1 - IN CORSO -->
+            <div class="wine-card crowd-card">
+                <img src="img/crowd1.jpg" alt="Etichetta introvabile" class="wine-img">
+                <div class="wine-content">
+                    <h3 class="wine-title">Sassicaia 1985</h3>
+                    <span class="wine-year">Tenuta San Guido - Toscana</span>
+                    <p class="wine-desc">
+                        Una leggenda del vino italiano. Obiettivo: acquisire una bottiglia per una degustazione storica.
+                    </p>
+                    
+                    <div style="margin: 1rem 0;">
+                        <strong>Obiettivo:</strong> €450,00<br>
+                        <strong>Raccolto:</strong> €180,00
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 40%;">40%</div>
+                    </div>
+                    
+                    <div class="donors-list">
+                        <strong>Sostenitori:</strong> Marco B. (€50), Laura R. (€30), Giovanni T. (€100)
+                    </div>
+                    
+                    <a href="https://www.paypal.com/donate/?business=[TUO_PAYPAL]&item_name=Sassicaia+1985" class="paypal-btn" target="_blank">
+                        🤝 Dona con PayPal
+                    </a>
+                </div>
+            </div>
+
+            <!-- BOTTIGLIA 2 - IN CORSO -->
+            <div class="wine-card crowd-card">
+                <img src="img/crowd2.jpg" alt="Etichetta introvabile" class="wine-img">
+                <div class="wine-content">
+                    <h3 class="wine-title">Masseto 2010</h3>
+                    <span class="wine-year">Tenuta dell'Ornellaia - Toscana</span>
+                    <p class="wine-desc">
+                        Il re del Merlot italiano. Un vino che ogni sommelier sogna di degustare almeno una volta.
+                    </p>
+                    
+                    <div style="margin: 1rem 0;">
+                        <strong>Obiettivo:</strong> €380,00<br>
+                        <strong>Raccolto:</strong> €95,00
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 25%;">25%</div>
+                    </div>
+                    
+                    <div class="donors-list">
+                        <strong>Sostenitori:</strong> Anna M. (€45), Paolo S. (€50)
+                    </div>
+                    
+                    <a href="https://www.paypal.com/donate/?business=[TUO_PAYPAL]&item_name=Masseto+2010" class="paypal-btn" target="_blank">
+                        🤝 Dona con PayPal
+                    </a>
+                </div>
+            </div>
+
+            <!-- BOTTIGLIA 3 - COMPLETATA (esempio) -->
+            <div class="wine-card crowd-card" style="border-color: #4CAF50;">
+                <img src="img/completata1.jpg" alt="Bottiglia raggiunta" class="wine-img">
+                <div class="wine-content">
+                    <h3 class="wine-title">Solaia 2015</h3>
+                    <span class="wine-year">Antinori - Toscana</span>
+                    <p class="wine-desc">
+                        <em>"Complesso e stratificato. Frutta nera, cioccolato fondente e note balsamiche. 
+                        Un capolavoro di equilibrio."</em>
+                    </p>
+                    
+                    <span class="completed-badge">✓ Obiettivo Raggiunto!</span>
+                    
+                    <div class="donors-list" style="background: #e8f5e9;">
+                        <strong>Grazie a:</strong> Roberto L. (€80), Chiara P. (€60), Davide F. (€40), 
+                        Elena G. (€50), Simone A. (€30)
+                    </div>
+                    
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: #4CAF50; font-weight: 700;">
+                        Degustata il 15/03/2024 - Recensione pubblicata
+                    </p>
+                </div>
+            </div>
+
+            <!-- Aggiungi altre 2-3 bottiglie qui -->
+
+        </div>
+    </section>
+
+    <!-- RINGRAZIAMENTI -->
+    <section id="ringraziamenti" class="container">
+        <h2 class="section-title">Bottiglie Raggiunte</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">
+            Queste etichette sono state possibili grazie alla vostra generosità. 
+            Ecco le recensioni e i ringraziamenti.
+        </p>
+        
+        <div class="wine-grid">
+            <!-- Qui inserisci le bottiglie completate con foto, descrizione e ringraziamenti -->
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-text">"Il vino è la poesia della terra" — Mario Soldati</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+            © 2024 [Tuo Nome] - Sommelier | Contatto: [tua email]
+        </p>
+    </footer>
+
+</body>
+</html>
